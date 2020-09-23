@@ -221,8 +221,61 @@ function add() {
             type: "input",
             message: "Please input the new employee's manager_id"
         }
-    ])
-}
+ 
+    ]).then(function(answer){
+
+        connection.query(
+            "INSERT INTO employee SET ?",
+            {
+                id: answer.id,
+                first_name: answer.firstname,
+                last_name: answer.lastname,
+                role_id: answer.roleid,
+                manager_id: answer.managerid || ""
+            },function(err) {
+                if (err) throw err;
+            })
+        
+
+            connection.query(
+                "INSERT INTO department SET ?",
+                {
+                    id: answer.id,
+                    full_name:  answer.firstname + " " + answer.lastname
+                },function(err) {
+                    if (err) throw err;
+                })
+
+            connection.query(
+                "INSERT INTO roles SET ?",
+                {
+                    id: answer.id,
+                    title: answer.title,
+                    salary: answer.salary,
+                    department_id: answer.departid
+                },function(err) {
+                    if (err) throw err;
+                })
+
+            connection.query(
+                "INSERT INTO joined SET ?",
+                {
+                    id: answer.id,
+                    full_name: answer.firstname + " " + answer.lastname,
+                    title: answer.title,
+                    salary: answer.salary,
+                    department_id: answer.departid,
+                    role_id: answer.roleid,
+                    manager_id: answer.managerid || ""
+                }, function(err, res) {
+                    if (err) throw err;
+                    console.log("Employee added");
+                    console.table(res);
+                    begin();
+                }
+            )
+        });
+};
 
 // show employees in engineering
 function engineer() {

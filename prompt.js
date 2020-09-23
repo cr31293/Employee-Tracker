@@ -49,9 +49,6 @@ function begin() {
             case "Remove employee":
                 remove();
                 break;
-            case "Update employee":
-                update();
-                break;
             case "Exit":
                 connection.end();
         }  

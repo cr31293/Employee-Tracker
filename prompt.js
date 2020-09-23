@@ -277,6 +277,68 @@ function add() {
         });
 };
 
+// function to handle "remove employee"
+function remove() {
+ 
+    inquirer.prompt({
+        name: "remove",
+        type: "input",
+        message: "Please input the id of the employee you'd like to remove"
+    }).then(function(answer){
+
+        var remove = answer.remove;
+        connection.query("SET SQL_SAFE_UPDATES = 0;"), function(err) {
+        if (err) throw err;
+    }
+        connection.query(`DELETE FROM joined WHERE id = ?;`, [remove],
+        function(err, res) {
+            if (err) throw err;
+            console.table(res);
+        });
+
+        connection.query(`DELETE FROM employee WHERE id = ?;`, [remove],
+        function(err, res) {
+            if (err) throw err;
+            console.table(res);
+        });
+
+        connection.query(`DELETE FROM roles WHERE id = ?;`, [remove],
+        function(err, res) {
+            if (err) throw err;
+            console.table(res);
+        });
+
+        connection.query(`DELETE FROM department WHERE id = ?;`, [remove],
+        function(err, res) {
+            if (err) throw err;
+            console.table(res);
+        });
+
+        connection.query("SET SQL_SAFE_UPDATES = 1;"), function(err) {
+            if (err) throw err;
+        }
+
+    }).then(function(answer){
+        inquirer.prompt({
+        name: "return",
+        type: "list",
+        choices: [
+            "return",
+            "exit"
+        ]
+    }).then(function(answer){
+        switch (answer.return) {
+            case "return":
+                begin();
+                break;
+            case "exit":
+                connection.end();
+                break;
+        }
+    })});
+
+};
+
 // show employees in engineering
 function engineer() {
     connection.query(

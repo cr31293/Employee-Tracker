@@ -179,7 +179,50 @@ function viewManager() {
 };
 
 // function to handle "add employee"
-
+function add() {
+    inquirer.prompt([
+        {
+            name: "id",
+            type: "input",
+            message: "Please input the new employee's id number"
+        },
+        {
+            name: "firstname",
+            type: "input",
+            message: "Please input the new employee's first_name"
+        },
+        {
+            name: "lastname",
+            type: "input",
+            message: "Please input the new employee's last_name"
+        },
+        {
+            name: "title",
+            type: "input",
+            message: "Please input the new employee's title"
+        },
+        {
+            name: "salary",
+            type: "input",
+            message: "Please input the new employee's salary"
+        },
+        {
+            name: "departid",
+            type: "input",
+            message: "Please input the new employee's department_id"
+        },
+        {
+            name: "roleid",
+            type: "input",
+            message: "Please input the new employee's role_id"
+        },
+        {
+            name: "managerid",
+            type: "input",
+            message: "Please input the new employee's manager_id"
+        }
+    ])
+}
 
 // show employees in engineering
 function engineer() {

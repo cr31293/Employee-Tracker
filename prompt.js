@@ -90,7 +90,7 @@ function view() {
         });
 })};
 
-// function to handle "view employees by department"
+// function to handle "view employees by role"
 function viewRole() {
     inquirer.prompt({
         name: "role",
@@ -126,6 +126,60 @@ function viewRole() {
         }
     });
 };
+
+// function to handle "view all employees by manager"
+function viewManager() {
+    var isManager = {}
+
+    connection.query("SELECT full_name, id FROM joined WHERE title = 'Manager'", function(err, x) {
+        if (err) {
+            throw err;
+        } else {
+            setManager(x);
+        }
+    });
+
+    function setManager(value) {
+        isManager = value;
+        console.log(isManager);
+    };
+    
+    inquirer.prompt({
+        name: "managerid",
+        type: "input",
+        message: "Enter the id of the Manager's team you would like to view?",
+    }).then(function(answer) {
+        
+            
+        connection.query(
+            `SELECT * FROM joined WHERE manager_id = ?;`, [answer.managerid],
+            function(err, res) {
+                if (err) throw err;
+                console.table(res);
+                inquirer.prompt({
+                    name: "return",
+                    type: "list",
+                    choices: ["edit", "return", "exit"]
+                })
+                .then(function(answer) {
+                    switch (answer.return) {
+                        case "edit":
+                            edit();
+                            break;
+                        case "return":
+                            begin();
+                            break;
+                        case "exit":
+                            connection.end();
+                    }
+                });
+            })
+
+    });
+};
+
+// function to handle "add employee"
+
 
 // show employees in engineering
 function engineer() {

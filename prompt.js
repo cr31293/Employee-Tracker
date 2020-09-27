@@ -96,7 +96,6 @@ function viewRole() {
         choices: [
             "Engineer",
             "Manager",
-            "Designer",
             "Executive",
             "Return",
             "Exit"

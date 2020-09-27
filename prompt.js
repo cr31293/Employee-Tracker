@@ -48,6 +48,8 @@ function begin() {
                 break;
             case "Remove employee":
                 remove();
+            case "Update employee":
+                edit();
                 break;
             case "Exit":
                 connection.end();

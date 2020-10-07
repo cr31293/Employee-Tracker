@@ -1,137 +1,87 @@
-# Unit 12 MySQL Homework: Employee Tracker
+# Employee Tracker
 
-Developers are often tasked with creating interfaces that make it easy for non-developers to view and interact with information stored in databases. Often these interfaces are known as **C**ontent **M**anagement **S**ystems. In this homework assignment, your challenge is to architect and build a solution for managing a company's employees using node, inquirer, and MySQL.
+</br>
 
-## Instructions
+## Description
 
-Design the following database schema containing three tables:
+This Employee Tracker is a CLI application that provides the user with a database accessible in the terminal to help manager a business manage and track their employees.
 
-![Database Schema](Assets/schema.png)
+</br>
 
-* **department**:
+## Availabitlity
 
-  * **id** - INT PRIMARY KEY
-  * **name** - VARCHAR(30) to hold department name
+This application can be found through the following GitHub link.
+GitHub: https://github.com/cr31293/Employee-Tracker
 
-* **role**:
+</br>
 
-  * **id** - INT PRIMARY KEY
-  * **title** -  VARCHAR(30) to hold role title
-  * **salary** -  DECIMAL to hold role salary
-  * **department_id** -  INT to hold reference to department role belongs to
+## Functionality
 
-* **employee**:
+</br>
 
-  * **id** - INT PRIMARY KEY
-  * **first_name** - VARCHAR(30) to hold employee first name
-  * **last_name** - VARCHAR(30) to hold employee last name
-  * **role_id** - INT to hold reference to role employee has
-  * **manager_id** - INT to hold reference to another employee that manages the employee being Created. This field may be null if the employee has no manager
-  
-Build a command-line application that at a minimum allows the user to:
+### Running in the terminal
+Install the required dependencies by running `npm isntall` once you've navigated to the projects root directory. Once the packages have been installed launch the app by running `npm start`.
 
-  * Add departments, roles, employees
+</br>
 
-  * View departments, roles, employees
+* Note: the GitHub repo includes a seed file with test data. Please remove the seed file if you wish to start with a fresh DB or change the seed file as you see fit to prepopulate the DB with data of your choosing.
 
-  * Update employee roles
+After installing the relevant packages and starting the app the employee management system is ready for use. The user may add and edit employees and relevent information as they see fit. A brief walkthrough of the app's usage may be found through the following Google Drive link: https://drive.google.com/file/d/1p_Ith6UvCxNWE43mZSJaTPp9WhZoBFgO/view
 
-Bonus points if you're able to:
+## Images
 
-  * Update employee managers
+</br>
 
-  * View employees by manager
+![trackerHomeScreen](Assets/trackerHome.PNG)
 
-  * Delete departments, roles, and employees
+This is the home screen you should see once the application has launched
 
-  * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
+</br>
 
-We can frame this challenge as follows:
+![trackerViewAllEmployees](Assets/trackerViewAll.PNG)
 
-```
-As a business owner
-I want to be able to view and manage the departments, roles, and employees in my company
-So that I can organize and plan my business
-```
+Example of viewing all employees in DB
 
-How do you deliver this? Here are some guidelines:
+</br>
 
-* Use the [MySQL](https://www.npmjs.com/package/mysql) NPM package to connect to your MySQL database and perform queries.
+![trackerEditScreen](Assets/trackerEdit.PNG)
 
-* Use [InquirerJs](https://www.npmjs.com/package/inquirer/v/0.2.3) NPM package to interact with the user via the command-line.
+Example of editing an existing employee record
 
-* Use [console.table](https://www.npmjs.com/package/console.table) to print MySQL rows to the console. There is a built-in version of `console.table`, but the NPM package formats the data a little better for our purposes.
+</br>
 
-* You may wish to have a separate file containing functions for performing specific SQL queries you'll need to use. Could a constructor function or a class be helpful for organizing these?
+![trackerAddEmployee](Assets/trackerAdd.PNG)
 
-* You will need to perform a variety of SQL JOINS to complete this assignment, and it's recommended you review the week's activities if you need a refresher on this.
+Example of adding a new employee to DB
 
-![Employee Tracker](Assets/employee-tracker.gif)
+</br>
 
-### Hints
+## Contributions
 
-* You may wish to include a `seed.sql` file to pre-populate your database. This will make development of individual features much easier.
+Authored by Chris Reed.
 
-* Focus on getting the basic functionality completed before working on more advanced features.
+</br>
+</br>
 
-* Review the week's activities for a refresher on MySQL.
+## Licensing
+MIT License
 
-* Check out [SQL Bolt](https://sqlbolt.com/) for some extra MySQL help.
+Copyright (c) 2020 Chris Reed
 
-## Minimum Requirements
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-* Functional application.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-* GitHub repository with a unique name and a README describing the project.
-
-* The command-line application should allow users to:
-
-  * Add departments, roles, employees
-
-  * View departments, roles, employees
-
-  * Update employee roles
-
-## Bonus
-
-* The command-line application should allow users to:
-
-  * Update employee managers
-
-  * View employees by manager
-
-  * Delete departments, roles, and employees
-
-  * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
-
-## Commit Early and Often
-
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
-
-* Your commit history is a signal to employers that you are actively working on projects and learning new skills.
-
-* Your commit history allows you to revert your codebase in the event that you need to return to a previous state.
-
-Follow these guidelines for committing:
-
-* Make single-purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits.
-
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history.
-
-* Don't commit half-done work, for the sake of your collaborators (and your future self!).
-
-* Test your application before you commit to ensure functionality at every step in the development process.
-
-We would like you to have well over 200 commits by graduation, so commit early and often!
-
-
-## Submission on BCS
-
-You are required to submit the following:
-
-* The URL of the GitHub repository
-
-* A video demonstrating the entirety of the app's functionality 
-
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -48,6 +48,7 @@ function begin() {
                 break;
             case "Remove employee":
                 remove();
+                break;
             case "Update employee":
                 edit();
                 break;
@@ -281,61 +282,41 @@ function remove() {
     inquirer.prompt({
         name: "remove",
         type: "input",
-        message: "Please input the id of the employee you'd like to remove"
+        message: "Please input the id of the employee you'd like to remove",
     }).then(function(answer){
-
+        
         var remove = answer.remove;
         connection.query("SET SQL_SAFE_UPDATES = 0;"), function(err) {
         if (err) throw err;
     }
         connection.query(`DELETE FROM joined WHERE id = ?;`, [remove],
-        function(err, res) {
+        function(err) {
             if (err) throw err;
-            console.table(res);
+            console.log("removed from joined");
         });
 
         connection.query(`DELETE FROM employee WHERE id = ?;`, [remove],
-        function(err, res) {
+        function(err) {
             if (err) throw err;
-            console.table(res);
-        });
+            console.log("removed from employee");
+
+        });1
 
         connection.query(`DELETE FROM roles WHERE id = ?;`, [remove],
-        function(err, res) {
+        function(err) {
             if (err) throw err;
-            console.table(res);
+            console.log("removed from roles");
+
         });
 
         connection.query(`DELETE FROM department WHERE id = ?;`, [remove],
-        function(err, res) {
+        function(err) {
             if (err) throw err;
-            console.table(res);
+            console.log("removed from department");
         });
+    begin()}
+    )};
 
-        connection.query("SET SQL_SAFE_UPDATES = 1;"), function(err) {
-            if (err) throw err;
-        }
-
-    }).then(function(answer){
-        inquirer.prompt({
-        name: "return",
-        type: "list",
-        choices: [
-            "return",
-            "exit"
-        ]
-    }).then(function(answer){
-        switch (answer.return) {
-            case "return":
-                begin();
-                break;
-            case "exit":
-                connection.end();
-                break;
-        }
-    })});
-
-};
 
 // show employees in engineering
 function engineer() {
